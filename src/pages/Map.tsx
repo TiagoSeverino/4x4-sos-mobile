@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 import mapMarker from '../images/map-marker.png';
-import { useNavigation } from '@react-navigation/native';
 
 export default function Map() {
 	const navigation = useNavigation();
@@ -16,10 +16,8 @@ export default function Map() {
 	return (
 		<>
 			<MapView provider={PROVIDER_GOOGLE} style={styles.map}>
-				<Marker
-					icon={mapMarker}
-					coordinate={{ latitude: 38.902, longitude: -9.395 }}
-				>
+				<Marker coordinate={{ latitude: 38.902, longitude: -9.395 }}>
+					<Image source={mapMarker} />
 					<Callout tooltip onPress={handleNavigateToMarkerDetails}>
 						<View style={styles.calloutContainer}>
 							<Text style={styles.calloutText}>Pajero</Text>
