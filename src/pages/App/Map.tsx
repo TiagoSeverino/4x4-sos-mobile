@@ -4,7 +4,7 @@ import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-import mapMarker from '../images/map-marker.png';
+import mapMarker from '../../images/map-marker.png';
 
 export default function Map() {
 	const navigation = useNavigation();

@@ -13,9 +13,9 @@ import { RectButton } from 'react-native-gesture-handler';
 
 import { AdMobBanner } from 'expo-ads-admob';
 
-import { adUnitDeailsID } from '../config';
+import { adUnitDeailsID } from '../../config';
 
-import mapMarkerImg from '../images/map-marker.png';
+import mapMarkerImg from '../../images/map-marker.png';
 
 export default function MarkerDetail() {
 	return (
