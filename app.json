@@ -1,11 +1,11 @@
 {
 	"expo": {
-		"name": "Rescu",
-		"slug": "rescu",
+		"name": "4x4 SOS",
+		"slug": "4x4-sos",
 		"privacy": "public",
 		"version": "1.0.0",
 		"platforms": ["ios", "android"],
-		"githubUrl": "https://github.com/TiagoSeverino/rescu-mobile",
+		"githubUrl": "https://github.com/TiagoSeverino/4x4-sos",
 		"orientation": "portrait",
 		"icon": "./assets/icon.png",
 		"splash": {
@@ -23,11 +23,13 @@
 			"supportsTablet": true
 		},
 		"android": {
-			"package": "com.tiagoseverino.rescu",
+			"package": "com.tiagoseverino.awd_sos",
 			"config": {
 				"googleMaps": {
 					"apiKey": "AIzaSyABz79vVBZlQ-95iPR7tJERaYLcoxdbm_8"
-				}
+				},
+				"googleMobileAdsAppId": "ca-app-pub-3542257341899974~1863576006",
+				"googleMobileAdsAutoInit": true
 			}
 		}
 	}
