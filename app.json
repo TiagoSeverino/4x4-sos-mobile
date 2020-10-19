@@ -20,7 +20,13 @@
 			"**/*"
 		],
 		"ios": {
-			"supportsTablet": true
+			"supportsTablet": true,
+			"bundleIdentifier": "com.tiagoseverino.4x4sos",
+			"config": {
+				"googleMapsApiKey": "AIzaSyC-V2IOI6QTv8DZ5fMBvfmHZlw12tPGT3I",
+				"googleMobileAdsAppId": "ca-app-pub-3542257341899974~6199757908",
+				"googleMobileAdsAutoInit": true
+			}
 		},
 		"android": {
 			"package": "com.tiagoseverino.awd_sos",
