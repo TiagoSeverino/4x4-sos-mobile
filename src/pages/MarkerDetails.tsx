@@ -8,8 +8,12 @@ import {
 	Dimensions,
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import { Feather, FontAwesome } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import { RectButton } from 'react-native-gesture-handler';
+
+import { AdMobBanner } from 'expo-ads-admob';
+
+import { adUnitDeailsID } from '../config';
 
 import mapMarkerImg from '../images/map-marker.png';
 
@@ -46,6 +50,19 @@ export default function MarkerDetail() {
 					Hoje calhou-me a mim.. preciso de ajuda na Ribeira da Quinta
 					do Conde.. Alguem que possa ajudar ? Tenho cinta! Obrigado.
 				</Text>
+
+				<View
+					style={{
+						marginTop: 32,
+						alignItems: 'center',
+					}}
+				>
+					<AdMobBanner
+						bannerSize="largeBanner"
+						adUnitID={adUnitDeailsID}
+						servePersonalizedAds
+					/>
+				</View>
 
 				<View style={styles.mapContainer}>
 					<MapView
