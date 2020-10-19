@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		width: '100%',
 		height: 56,
+		elevation: 3,
 	},
 	buttonText: {
 		fontSize: 16,
