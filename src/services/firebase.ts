@@ -2,6 +2,7 @@ import * as firebase from 'firebase';
 import 'firebase/auth';
 import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
+import * as Analytics from 'expo-firebase-analytics';
 
 import { firebaseConfig } from '../config';
 
@@ -59,3 +60,6 @@ export const logout = () => auth.signOut();
 
 export const passwordReset = (email: string) =>
 	auth.sendPasswordResetEmail(email);
+
+export const setCurrentScreen = (routeName: string) =>
+	!__DEV__ && Analytics.setCurrentScreen(routeName);
