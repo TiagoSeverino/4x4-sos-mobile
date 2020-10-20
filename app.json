@@ -19,6 +19,7 @@
 		"assetBundlePatterns": [
 			"**/*"
 		],
+		"scheme": "awdsos",
 		"ios": {
 			"supportsTablet": true,
 			"bundleIdentifier": "com.tiagoseverino.4x4sos",
