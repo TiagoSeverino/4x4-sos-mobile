@@ -12,11 +12,6 @@ import AppButton from '../../components/AppButton';
 
 import authStyles from './styles';
 
-const LoginSchema = Yup.object().shape({
-	email: Yup.string().email('Invalid email').required('Required'),
-	password: Yup.string().min(6, 'Password Too Short!').required('Required'),
-});
-
 export default function Login() {
 	return (
 		<AppGradient>
@@ -85,3 +80,8 @@ export default function Login() {
 		</AppGradient>
 	);
 }
+
+const LoginSchema = Yup.object().shape({
+	email: Yup.string().email('Invalid email').required('Required'),
+	password: Yup.string().min(6, 'Password Too Short!').required('Required'),
+});
