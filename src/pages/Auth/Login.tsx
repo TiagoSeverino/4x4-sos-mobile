@@ -25,14 +25,14 @@ export default function Login() {
 				<Formik
 					initialValues={{ email: '', password: '' }}
 					validationSchema={LoginSchema}
-					onSubmit={({ email, password }) => {
+					onSubmit={({ email, password }) =>
 						loginWithEmail(
 							email,
 							password
 						).catch(({ code, message }) =>
 							Alert.alert(code, message)
-						);
-					}}
+						)
+					}
 				>
 					{({
 						handleChange,
