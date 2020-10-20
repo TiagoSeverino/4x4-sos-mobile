@@ -8,7 +8,25 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+		  node-version: 12.x
+	  - name: Download Config To Workspace
+        uses: carlosperate/download-file-action@v1.0.3
+        with:
+          file-url: ${{ secrets.CONFIG_URL }}
+          file-name: 'index.ts'
+          location: './src/config'
+      - name: Download google-services.json
+        uses: carlosperate/download-file-action@v1.0.3
+        with:
+          file-url: ${{ secrets.GOOGLE_SERVICES }}
+          file-name: 'google-services.json'
+		  location: './'
+	  - name: GoogleService-Info.plist
+        uses: carlosperate/download-file-action@v1.0.3
+        with:
+          file-url: ${{ secrets.GOOGLE_SERVICES_PLIST }}
+          file-name: 'GoogleService-Info.plist'
+          location: './'
       - uses: expo/expo-github-action@v5
         with:
           expo-version: 3.x

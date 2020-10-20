@@ -1,4 +1,6 @@
-src/config.ts
+src/config/index.ts
+google-services.json
+GoogleService-Info.plist
 
 node_modules/**/*
 .expo/*

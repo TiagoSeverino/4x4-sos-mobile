@@ -8,6 +8,8 @@ import {
 
 import Routes from './src/router';
 
+import { AuthUserProvider } from './src/components/AuthUserProvider';
+
 export default function App() {
 	const [fontsLoaded] = useFonts({
 		Nunito_600SemiBold,
@@ -16,5 +18,9 @@ export default function App() {
 	});
 
 	if (!fontsLoaded) return null;
-	return <Routes />;
+	return (
+		<AuthUserProvider>
+			<Routes />
+		</AuthUserProvider>
+	);
 }

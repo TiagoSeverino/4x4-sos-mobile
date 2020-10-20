@@ -1,36 +1,34 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 
-import Header from './components/Header';
+import { auth } from './services/firebase';
 
-import Map from './pages/Map';
-import MarkerDetails from './pages/MarkerDetails';
+import { AuthUserContext } from './components/AuthUserProvider';
 
-const { Navigator, Screen } = createStackNavigator();
+import App from './pages/App';
+import Auth from './pages/Auth';
 
 export default function Routes() {
+	const { user, setUser } = useContext(AuthUserContext);
+	const [authLoaded, setAuthLoaded] = useState(false);
+
+	useEffect(() => {
+		const unsubscribeAuth = auth.onAuthStateChanged(async (authUser) => {
+			try {
+				await (authUser ? setUser(authUser) : setUser(null));
+				setAuthLoaded(true);
+			} catch (error) {
+				console.log(error);
+			}
+		});
+
+		return unsubscribeAuth;
+	}, []);
+
+	if (!authLoaded) return null;
+
 	return (
-		<NavigationContainer>
-			<Navigator
-				screenOptions={{
-					headerShown: false,
-					cardStyle: {
-						backgroundColor: '#F2F3F5',
-					},
-				}}
-			>
-				<Screen name="Map" component={Map} />
-				<Screen
-					name="MarkerDetails"
-					component={MarkerDetails}
-					options={{
-						headerShown: true,
-						header: () => <Header title="Assistance Details" />,
-					}}
-				/>
-			</Navigator>
-		</NavigationContainer>
+		<NavigationContainer>{user ? <App /> : <Auth />}</NavigationContainer>
 	);
 }
