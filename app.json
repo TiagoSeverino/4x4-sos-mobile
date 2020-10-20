@@ -42,6 +42,7 @@
 				"googleMobileAdsAutoInit": true
 			},
 			"googleServicesFile": "./google-services.json"
-		}
+		},
+		"facebookAppId": "167967844503204"
 	}
 }
