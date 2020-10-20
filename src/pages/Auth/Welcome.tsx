@@ -1,6 +1,7 @@
 import React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { FontAwesome } from '@expo/vector-icons';
 
 import logo from '../../images/logo.png';
 
@@ -37,7 +38,16 @@ export default function Welcome() {
 					color="#F7EDE2"
 				/>
 				<AppButton
-					title="Continue with Facebook"
+					title={
+						<>
+							Continue with Facebook{' '}
+							<FontAwesome
+								name="facebook-square"
+								color="#F7EDE2"
+								size={16}
+							/>
+						</>
+					}
 					onPress={() => {}}
 					backgroundColor="#29487D"
 					color="#F7EDE2"
