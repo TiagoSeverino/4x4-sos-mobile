@@ -1,7 +1,9 @@
 import React from 'react';
-import { Image, View } from 'react-native';
+import { Image, View, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
+
+import { loginWithFacebook } from '../../services/firebase';
 
 import logo from '../../images/logo.png';
 
@@ -48,7 +50,11 @@ export default function Welcome() {
 							/>
 						</>
 					}
-					onPress={() => {}}
+					onPress={() =>
+						loginWithFacebook().catch(({ code, message }) =>
+							Alert.alert(code, message)
+						)
+					}
 					backgroundColor="#29487D"
 					color="#F7EDE2"
 				/>

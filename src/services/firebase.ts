@@ -12,7 +12,7 @@ export const loginWithEmail = (email: string, password: string) =>
 	auth.signInWithEmailAndPassword(email, password);
 
 export const loginWithFacebook = async () => {
-	await Facebook.initializeAsync(firebaseConfig.facebookAppId);
+	await Facebook.initializeAsync({ appId: firebaseConfig.facebookAppId });
 
 	const { type, token } = await Facebook.logInWithReadPermissionsAsync({
 		permissions: ['public_profile'],
