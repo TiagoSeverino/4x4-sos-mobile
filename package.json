@@ -15,6 +15,7 @@
     "@types/yup": "^0.29.8",
     "expo": "~39.0.2",
     "expo-ads-admob": "~8.3.0",
+    "expo-ads-facebook": "~8.4.0",
     "expo-facebook": "~9.0.0",
     "expo-font": "~8.3.0",
     "expo-google-sign-in": "~8.3.0",
