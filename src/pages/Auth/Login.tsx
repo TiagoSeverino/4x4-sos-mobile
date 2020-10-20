@@ -1,34 +1,87 @@
 import React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, TextInput, View, Text, Alert } from 'react-native';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+
+import { loginWithEmail } from '../../services/firebase';
 
 import logo from '../../images/logo.png';
 
 import AppGradient from '../../components/AppGradient';
 import AppButton from '../../components/AppButton';
 
-export default function Welcome() {
+import authStyles from './styles';
+
+const LoginSchema = Yup.object().shape({
+	email: Yup.string().email('Invalid email').required('Required'),
+	password: Yup.string().min(6, 'Password Too Short!').required('Required'),
+});
+
+export default function Login() {
 	return (
 		<AppGradient>
-			<Image style={styles.logo} source={logo} />
-			<View style={styles.buttonContainer}>
-				<AppButton
-					title="Login"
-					onPress={() => {}}
-					backgroundColor="#FF5440"
-					color="#F7EDE2"
-				/>
+			<Image style={authStyles.logo} source={logo} />
+			<View style={authStyles.buttonContainer}>
+				<Formik
+					initialValues={{ email: '', password: '' }}
+					validationSchema={LoginSchema}
+					onSubmit={({ email, password }) => {
+						loginWithEmail(
+							email,
+							password
+						).catch(({ code, message }) =>
+							Alert.alert(code, message)
+						);
+					}}
+				>
+					{({
+						handleChange,
+						handleBlur,
+						handleSubmit,
+						values,
+						errors,
+					}) => (
+						<>
+							<TextInput
+								style={[authStyles.input, authStyles.inputText]}
+								placeholder="Email"
+								onChangeText={handleChange('email')}
+								onBlur={handleBlur('email')}
+								value={values.email}
+								textContentType="emailAddress"
+								keyboardType="email-address"
+								autoCapitalize="none"
+							/>
+							{errors.email && (
+								<Text style={authStyles.inputErrorText}>
+									{errors.email}
+								</Text>
+							)}
+							<TextInput
+								style={[authStyles.input, authStyles.inputText]}
+								placeholder="Password"
+								onChangeText={handleChange('password')}
+								onBlur={handleBlur('password')}
+								value={values.password}
+								textContentType="password"
+								autoCapitalize="none"
+								secureTextEntry
+							/>
+							{errors.password && (
+								<Text style={authStyles.inputErrorText}>
+									{errors.password}
+								</Text>
+							)}
+							<AppButton
+								title="Login"
+								onPress={handleSubmit}
+								backgroundColor="#FF5440"
+								color="#F7EDE2"
+							/>
+						</>
+					)}
+				</Formik>
 			</View>
 		</AppGradient>
 	);
 }
-
-const styles = StyleSheet.create({
-	logo: {
-		marginTop: 124,
-	},
-	buttonContainer: {
-		width: '100%',
-		marginTop: 64,
-		paddingHorizontal: 32,
-	},
-});

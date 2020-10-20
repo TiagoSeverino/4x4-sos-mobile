@@ -6,11 +6,13 @@ import logo from '../../images/logo.png';
 import AppGradient from '../../components/AppGradient';
 import AppButton from '../../components/AppButton';
 
-export default function Welcome() {
+import authStyles from './styles';
+
+export default function Register() {
 	return (
 		<AppGradient>
-			<Image style={styles.logo} source={logo} />
-			<View style={styles.buttonContainer}>
+			<Image style={authStyles.logo} source={logo} />
+			<View style={authStyles.buttonContainer}>
 				<AppButton
 					title="Register"
 					onPress={() => {}}
@@ -21,14 +23,3 @@ export default function Welcome() {
 		</AppGradient>
 	);
 }
-
-const styles = StyleSheet.create({
-	logo: {
-		marginTop: 124,
-	},
-	buttonContainer: {
-		width: '100%',
-		marginTop: 64,
-		paddingHorizontal: 32,
-	},
-});

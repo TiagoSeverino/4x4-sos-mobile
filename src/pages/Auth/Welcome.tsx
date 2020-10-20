@@ -7,6 +7,8 @@ import logo from '../../images/logo.png';
 import AppGradient from '../../components/AppGradient';
 import AppButton from '../../components/AppButton';
 
+import authStyles from './styles';
+
 export default function Welcome() {
 	const navigation = useNavigation();
 
@@ -20,8 +22,8 @@ export default function Welcome() {
 
 	return (
 		<AppGradient>
-			<Image style={styles.logo} source={logo} />
-			<View style={styles.buttonContainer}>
+			<Image style={authStyles.logo} source={logo} />
+			<View style={authStyles.buttonContainer}>
 				<AppButton
 					title="Login"
 					onPress={handleNavigateToLogin}
@@ -44,14 +46,3 @@ export default function Welcome() {
 		</AppGradient>
 	);
 }
-
-const styles = StyleSheet.create({
-	logo: {
-		marginTop: 124,
-	},
-	buttonContainer: {
-		width: '100%',
-		marginTop: 64,
-		paddingHorizontal: 32,
-	},
-});
