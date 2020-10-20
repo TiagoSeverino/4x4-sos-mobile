@@ -25,8 +25,12 @@
 			"config": {
 				"googleMapsApiKey": "AIzaSyC-V2IOI6QTv8DZ5fMBvfmHZlw12tPGT3I",
 				"googleMobileAdsAppId": "ca-app-pub-3542257341899974~6199757908",
-				"googleMobileAdsAutoInit": true
-			}
+				"googleMobileAdsAutoInit": true,
+				"googleSignIn": {
+					"reservedClientId": "com.googleusercontent.apps.610553114293-8ube3qh8830fm3ga1hcqrei7oumq3q3g"
+				}
+			},
+			"googleServicesFile": "./GoogleService-Info.plist"
 		},
 		"android": {
 			"package": "com.tiagoseverino.awd_sos",
@@ -36,7 +40,8 @@
 				},
 				"googleMobileAdsAppId": "ca-app-pub-3542257341899974~1863576006",
 				"googleMobileAdsAutoInit": true
-			}
+			},
+			"googleServicesFile": "./google-services.json"
 		}
 	}
 }

@@ -1,6 +1,7 @@
 import * as firebase from 'firebase';
 import 'firebase/auth';
 import * as Facebook from 'expo-facebook';
+import * as GoogleSignIn from 'expo-google-sign-in';
 
 import { firebaseConfig } from '../config';
 
@@ -18,9 +19,26 @@ export const loginWithFacebook = async () => {
 		permissions: ['public_profile'],
 	});
 
-	if (type !== 'success') throw 'Unable to login with facebook';
+	if (type !== 'success')
+		throw { code: 'Error', message: 'Unable to login with facebook' };
 
 	const credential = firebase.auth.FacebookAuthProvider.credential(token);
+	return auth.signInWithCredential(credential);
+};
+
+export const loginWithGoogle = async () => {
+	await GoogleSignIn.askForPlayServicesAsync();
+	const { type, user } = await GoogleSignIn.signInAsync();
+	const data = await GoogleSignIn.GoogleAuthentication.prototype.toJSON();
+
+	if (type !== 'success')
+		throw { code: 'Error', message: 'Unable to login with google' };
+
+	const credential = firebase.auth.GoogleAuthProvider.credential(
+		data.idToken,
+		data.accessToken
+	);
+
 	return auth.signInWithCredential(credential);
 };
 
