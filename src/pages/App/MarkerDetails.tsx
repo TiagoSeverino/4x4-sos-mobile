@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
 	Image,
 	View,
@@ -11,13 +11,19 @@ import MapView, { Marker } from 'react-native-maps';
 import { FontAwesome } from '@expo/vector-icons';
 import { RectButton } from 'react-native-gesture-handler';
 
-import { AdMobBanner } from 'expo-ads-admob';
+import { AdMobBanner, isAvailableAsync } from 'expo-ads-admob';
 
 import { adUnitDeailsID } from '../../config';
 
-import mapMarkerImg from '../../images/map-marker.png';
+import mapMarker from '../../images/map-marker.png';
 
 export default function MarkerDetail() {
+	const [bannerAvailable, setBannerAvailable] = useState(false);
+
+	useEffect(() => {
+		isAvailableAsync().then((available) => setBannerAvailable(available));
+	}, []);
+
 	return (
 		<ScrollView style={styles.container}>
 			<View style={styles.imagesContainer}>
@@ -51,18 +57,20 @@ export default function MarkerDetail() {
 					do Conde.. Alguem que possa ajudar ? Tenho cinta! Obrigado.
 				</Text>
 
-				<View
-					style={{
-						marginTop: 32,
-						alignItems: 'center',
-					}}
-				>
+				{bannerAvailable && (
 					<AdMobBanner
 						bannerSize="largeBanner"
 						adUnitID={adUnitDeailsID}
 						servePersonalizedAds
+						onDidFailToReceiveAdWithError={() =>
+							setBannerAvailable(false)
+						}
+						style={{
+							marginTop: 32,
+							alignItems: 'center',
+						}}
 					/>
-				</View>
+				)}
 
 				<View style={styles.mapContainer}>
 					<MapView
@@ -79,14 +87,14 @@ export default function MarkerDetail() {
 						style={styles.mapStyle}
 					>
 						<Marker
-							icon={mapMarkerImg}
 							coordinate={{
 								latitude: -27.2092052,
 								longitude: -49.6401092,
 							}}
-						/>
+						>
+							<Image source={mapMarker} />
+						</Marker>
 					</MapView>
-
 					<View style={styles.routesContainer}>
 						<Text style={styles.routesText}>
 							Directions to here
