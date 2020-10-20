@@ -29,14 +29,15 @@ export const loginWithFacebook = async () => {
 export const loginWithGoogle = async () => {
 	await GoogleSignIn.askForPlayServicesAsync();
 	const { type, user } = await GoogleSignIn.signInAsync();
-	const data = await GoogleSignIn.GoogleAuthentication.prototype.toJSON();
 
-	if (type !== 'success')
+	if (type !== 'success' || !user?.auth)
 		throw { code: 'Error', message: 'Unable to login with google' };
 
+	const { idToken, accessToken } = user.auth;
+
 	const credential = firebase.auth.GoogleAuthProvider.credential(
-		data.idToken,
-		data.accessToken
+		idToken,
+		accessToken
 	);
 
 	return auth.signInWithCredential(credential);
